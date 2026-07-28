@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך מקיף: עבודה ועיצוב תוצרים באילוסטרייטור</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #fdfbf7;
+            --card-bg: #ffffff;
+            --card-border: #e8e2d5;
+            --primary-orange: #ff7a00;
+            --accent-purple: #6c5ce7;
+            --accent-teal: #00cec9;
+            --text-dark: #2d3436;
+            --text-muted: #636e72;
+            --kbd-bg: #f1f2f6;
+            --kbd-border: #ced6e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* Avatar Inline Icon */
+        .inline-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-left: 6px;
+            border: 1px solid var(--primary-orange);
+            object-fit: cover;
+            display: inline-block;
+        }
+
+        /* Header Styling with Avatar */
+        header {
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--accent-purple));
+        }
+
+        .header-avatar-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-orange);
+            box-shadow: 0 5px 15px rgba(255,122,0,0.3);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .header-text h1 span {
+            color: var(--primary-orange);
+        }
+
+        .header-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        section:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--primary-orange);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px dashed #f0e6d2;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: var(--accent-purple);
+            margin: 1.5rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+
+        /* Enclosed English Text Box */
+        .en-box {
+            display: inline-block;
+            direction: ltr;
+            unicode-bidi: embed;
+            background-color: rgba(108, 92, 231, 0.08);
+            color: var(--accent-purple);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: monospace;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            margin: 0 2px;
+        }
+
+        /* Keyboard Shortcut styling */
+        .kbd {
+            display: inline-block;
+            direction: ltr;
+            unicode-bidi: embed;
+            background-color: var(--kbd-bg);
+            border: 1px solid var(--kbd-border);
+            border-bottom-width: 3px;
+            border-radius: 6px;
+            padding: 2px 7px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #2f3542;
+            margin: 0 2px;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0e6d2;
+        }
+
+        th {
+            background-color: #fff8ee;
+            color: var(--primary-orange);
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background-color: #faf8f3;
+        }
+
+        /* Steps & Bullet Lists */
+        ol, ul {
+            padding-right: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.6rem;
+            color: #333;
+        }
+
+        li::marker {
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        /* Example & Image Boxes */
+        .example-box {
+            background-color: #f5f2eb;
+            border-right: 4px solid var(--accent-teal);
+            padding: 1.2rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .doc-preview-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid var(--card-border);
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: block;
+        }
+
+        /* Floating Crazy Avatar Widget */
+        .floating-avatar-widget {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: #ffffff;
+            border: 2px solid var(--primary-orange);
+            border-radius: 50px;
+            padding: 8px 18px 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(255,122,0,0.25);
+            z-index: 1000;
+            animation: floatBounce 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .floating-avatar-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-orange);
+            object-fit: cover;
+        }
+
+        .floating-avatar-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .floating-avatar-text .title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+        }
+
+        .floating-avatar-text .desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes floatBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; }
+            .floating-avatar-widget { bottom: 15px; left: 15px; padding: 6px 12px; }
+            .floating-avatar-text { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header with Crazy Avatar Image -->
+    <header>
+        <img class="header-avatar-img" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="Crazy Avatar">
+        <div class="header-text">
+            <h1>מדריך לתלמיד: <span>Adobe Illustrator</span></h1>
+            <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> מדריך מקיף ושלבי לביצוע כל התוצרים הנדרשים – לפי הנחיות העבודה המלאות</p>
+        </div>
+    </header>
+
+    <!-- מבוא והבדלים -->
+    <section>
+        <h2><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> מבוא לתוכנת אילוסטרייטור</h2>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> תוכנת אילוסטרייטור מחברת אדובי הינה תוכנה ותיקה ומקצועית ביותר המיועדת בעיקר לאיור וציור דיגיטלי. היא מבוססת על וקטור (תוכנה וקטורית) כתוצאה מהיותה תוכנה וקטורית ובגלל יתרונותיה, היא מיועדת בעיקר למטלות כגון עיצוב לוגואים, יצירת אייקונים, עיצוב אלמנטים וגרפיקות גמישות לאפליקציות ואתרים ועיצוב גרפיקות גדולות מימדים כגון שלטים גדולים לחנויות, בניינים, תחנות דלק, שלטי חוצות וכו'. בנוסף, ניתן גם לעצב בה עבודות לדפוס כמו פליירים, כרטיסי ביקור ועוד.</p>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> הבדלים בין תוכנות פוטושופ ואילוסטרייטור</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>מאפיין</th>
+                        <th>אילוסטרייטור (<span class="en-box">Illustrator</span>)</th>
+                        <th>פוטושופ (<span class="en-box">Photoshop</span>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>א. עיקרון עבודה</strong></td>
+                        <td>עבודה עם צורות ואיורים (תוכנה וקטורית)</td>
+                        <td>עיבוד תמונות, מבוססת על פיקסלים (<span class="en-box">Pixels</span>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ב. יתרונות</strong></td>
+                        <td>• קבצים קלים יחסית<br>• אפשר להגדיל אותם מבלי לאבד מהאיכות (ללא פיקסול)</td>
+                        <td>• תמונות איכותיות ומציאותיות<br>• שימוש באפקטים איכותיים</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ג. חסרונות</strong></td>
+                        <td>• ציורים לא מורכבים ולא מציאותיים מספיק (אינה מאפשרת עיבוד פיקסלים כמו ריטוש)<br>• ציורים "שטוחים", דו-ממדיים או תלת-ממדיים בסיסיים ביותר<br>• אפקטים פחות איכותיים ומורכבים</td>
+                        <td>• ככל שהקבצים איכותיים יותר, הם גם כבדים יותר<br>• הקבצים "מפוקסלים" (מעוותים ומטושטשים) כשמגדילים או מקטינים אותם</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> מבט-על על ממשק התוכנה</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> ממשק התוכנה מורכב מהחלקים הבאים: בחירת מרחב העבודה (<span class="en-box">WORKSPACE</span>), תפריט עליון, סרגל המאפיינים, לשוניות קבצים פתוחים, ארגז הכללים (סרגל כלים שמאלי), משטח העבודה (<span class="en-box">Artboard</span>), פאנלים / לוחיות בצד ימין, וסרגל תחתון.</p>
+    </section>
+
+    <!-- טכניקות ומיומנויות -->
+    <section>
+        <h2><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> אילוסטרייטור – טכניקות, מיומנויות וקיצורי דרך</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>איך עושים...?</th>
+                        <th>דרך הביצוע בתוכנה</th>
+                        <th>קיצורי דרך</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>יצירת קובץ חדש</strong></td>
+                        <td><span class="en-box">FILE > NEW</span></td>
+                        <td><span class="kbd">CTRL + N</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>פתיחת קובץ / הבאת תמונה</strong></td>
+                        <td><span class="en-box">FILE > OPEN</span> | הבאת תמונה ישירות: <span class="en-box">FILE > PLACE</span></td>
+                        <td><span class="kbd">CTRL + O</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>בחירה, הגדלה או סיבוב</strong></td>
+                        <td>כלי הבחירה הרגיל (החץ השחור)</td>
+                        <td><span class="kbd">V</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>בחירת נקודת עוגן / אלמנט בקבוצה</strong></td>
+                        <td>כלי הבחירה הישיר (החץ הלבן) – משמש גם לבחירת תמונה בתוך מסיכת חיתוך</td>
+                        <td><span class="kbd">A</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>שמירה על פרופורציות</strong></td>
+                        <td>החזקת מקש <span class="kbd">SHIFT</span> תוך כדי הקטנה או הגדלה</td>
+                        <td><span class="kbd">SHIFT</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>בחירה של מספר אלמנטים</strong></td>
+                        <td>החזקת מקש <span class="kbd">SHIFT</span> וסימון, או בחירת הכל במיטבה</td>
+                        <td><span class="kbd">CTRL + A</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>העתקה והדבקה</strong></td>
+                        <td><span class="en-box">EDIT > COPY</span> / <span class="en-box">EDIT > PASTE</span></td>
+                        <td><span class="kbd">CTRL + C</span> / <span class="kbd">CTRL + V</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>קיבוץ / ביטול קיבוץ</strong></td>
+                        <td>קליק ימני > <span class="en-box">GROUP</span> / קליק ימני > <span class="en-box">UNGROUP</span></td>
+                        <td><span class="kbd">CTRL + G</span> / <span class="kbd">CTRL + SHIFT + G</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>שליחה אחורה/קדימה (Arrange)</strong></td>
+                        <td>סימון > קליק ימני > <span class="en-box">ARRANGE</span> ואפשרויות: <span class="en-box">SEND TO BACK</span>, <span class="en-box">SEND BACKWARD</span>, <span class="en-box">SEND FORWARD</span></td>
+                        <td><span class="kbd">CTRL + [</span> / <span class="kbd">CTRL + ]</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>שמירה של קובץ עבודה (פתוח)</strong></td>
+                        <td><span class="en-box">FILE > SAVE</span></td>
+                        <td><span class="kbd">CTRL + S</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>שמירה של תמונה סגורה</strong></td>
+                        <td><span class="en-box">FILE > EXPORT > EXPORT AS</span> (לבחור <span class="en-box">JPG</span> או <span class="en-box">PNG</span> ולסמן V ב-<span class="en-box">USE ARTBOARDS</span>!)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>יצירת צורות</strong></td>
+                        <td>מלבן (<span class="en-box">RECTANGLE</span>), עיגול/אליפסה (<span class="en-box">ELLIPSE</span>), כוכב (<span class="en-box">STAR</span>), הבזק (<span class="en-box">FLARE</span>)<br>
+                        • צורת שמש: כלי הכוכב > הקלקה על המסך > הכנסת מספר הקרניים<br>
+                        • צורת משולש: כלי הפוליגון > הקלקה על המסך > הכנסת מספר 3</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ביטול / חזרה לשלב אחרון</strong></td>
+                        <td><span class="en-box">EDIT > UNDO</span> / <span class="en-box">EDIT > REDO</span></td>
+                        <td><span class="kbd">CTRL + Z</span> / <span class="kbd">CTRL + SHIFT + Z</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>חזרה ושכפול הפעולה האחרונה</strong></td>
+                        <td>חזרה על פעולת השכפול/הזזה האחרונה</td>
+                        <td><span class="kbd">CTRL + D</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>קירוב / הרחקת תצוגה (Zoom)</strong></td>
+                        <td>כלי הזכוכית המגדלת (אינו משנה את גודל האלמנט, רק את תצוגת המסך)</td>
+                        <td><span class="kbd">CTRL + +</span> / <span class="kbd">CTRL + -</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>שכפול אלמנט מהיר</strong></td>
+                        <td>החזקת מקש <span class="kbd">ALT</span> + גרירת האלמנט הצידה עם החץ השחור</td>
+                        <td><span class="kbd">ALT</span> + גרירה</td>
+                    </tr>
+                    <tr>
+                        <td><strong>מסיכת חיתוך (Clipping Mask)</strong></td>
+                        <td>הדבקת תמונה > יצירת צורה מעליה > סימון שניהם > קליק ימני > <span class="en-box">MAKE CLIPPING MASK</span> (ניתן לסרטט גם ע"י <span class="en-box">PEN TOOL</span>)</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>חיתוך קצוות תמונה / הסתרה</strong></td>
+                        <td>סימון > <span class="en-box">MASK</span> (בתפריט העליון) > התאמת גבולות התמונה עם החץ השחור</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>שקיפות</strong></td>
+                        <td>סימון > הורדת האטימות ב-<span class="en-box">OPACITY</span> בתפריט העליון או בלוחית ה-<span class="en-box">PROPERTIES</span></td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>כתיבה</strong></td>
+                        <td>כלי הכתב (<span class="kbd">T</span>) - הצגת פאנל אופציות כתיבה: <span class="en-box">WINDOW > CHARACTER</span></td>
+                        <td><span class="kbd">CTRL + T</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>מעבר צבע</strong></td>
+                        <td>בעזרת פאנל ה-<span class="en-box">GRADIENT</span> בצד ימין או כניסה לספריות דרך הדוגמיות בפאנל</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>הפיכת תמונה לווקטורית</strong></td>
+                        <td>סימון > בחירת אפשרות מתוך תפריט ה-<span class="en-box">IMAGE TRACE</span> בתפריט העליון</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>חיתוך צורות (Pathfinder)</strong></td>
+                        <td>פאנל ה-<span class="en-box">PATHFINDER</span>: חיתוך ע"י צורה קדמית (<span class="en-box">MINUS FRONT</span>), שילוב צורות (<span class="en-box">UNITE</span>), פירוק (<span class="en-box">DIVIDE</span>). אפשר לערוך גם ע"י <span class="en-box">SHAPEBUILDER</span> או <span class="en-box">SHAPER</span>.</td>
+                        <td><span class="kbd">SHIFT + CTRL + F9</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- הנחיות מפורטות לכל תוצר -->
+    <section>
+        <h2><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> הנחיות מפורטות לביצוע התוצרים</h2>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> 📇 כרטיס ביקור</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> להלן שלבי העבודה לכרטיס ביקור:</p>
+        <ol>
+            <li>פתיחת תוכנת אילוסטרייטור.</li>
+            <li>יצירת קובץ: <span class="en-box">FILE > NEW</span> | מספר עמודים: <strong>2</strong> (<span class="en-box">ARTBOARDS</span>) | מידות: <strong>9 * 5 ס"מ</strong>.</li>
+            <li>פתיחת הלוגו: <span class="en-box">FILE > OPEN</span>.</li>
+            <li>סימון הלוגו בעזרת כלי הסימון (החץ השחור).</li>
+            <li>העתקה: <span class="kbd">CTRL + C</span>.</li>
+            <li>הדבקה: <span class="kbd">CTRL + V</span>.</li>
+            <li>כתיבת הפרטים: כלי הכתב (<span class="kbd">T</span>).</li>
+            <li>יצירת צורות לרקע בעזרת מלבן או אליפסה או כלי העט - <span class="en-box">PEN TOOL</span>.</li>
+            <li>חיתוך צורות בעזרת ה-<span class="en-box">PATHFINDER</span> אם צריך.</li>
+            <li>או הורדת תמונת רקע מאתר <span class="en-box">PIXABAY.COM</span> והבאתה ע"י <span class="en-box">FILE > PLACE</span> והדבקתה לתוך צורה (<span class="en-box">CLIPPING MASK</span>) או יצירת רקע ע"י <span class="en-box">PATTERN</span>.</li>
+            <li>הוספת הקסם והיצירתיות שלכם…. ;-)</li>
+            <li>שמירה של קובץ העבודה: <span class="en-box">FILE > SAVE</span>.</li>
+            <li>שמירה של תמונה סגורה: <span class="en-box">FILE > EXPORT > EXPORT AS</span>.</li>
+        </ol>
+        <div class="example-box">
+            <strong><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> דוגמת עבודה - כרטיס ביקור מנדלות:</strong>
+            <img class="doc-preview-img" src="https://lh3.googleusercontent.com/d/1nf2I8Lp1FEGssNSew7Z6tJ_PqOULky8J" alt="כרטיס ביקור מנדלות">
+        </div>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> ✉️ נייר מכתבים</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> להלן שלבי העבודה לנייר מכתבים:</p>
+        <ol>
+            <li>פתיחת תוכנת אילוסטרייטור.</li>
+            <li>יצירת קובץ: <span class="en-box">FILE > NEW</span> | מידות: <strong>29.7 * 21 ס"מ</strong> (A4).</li>
+            <li>פתיחת עבודה אחרת (כרטיס ביקור למשל…): <span class="en-box">FILE > OPEN</span> כדי להעתיק ממנה אלמנטים כמו הלוגו למשל..</li>
+            <li>סימון בעזרת כלי הסימון (החץ השחור).</li>
+            <li>העתקה: <span class="kbd">CTRL + C</span> | הדבקה: <span class="kbd">CTRL + V</span>.</li>
+            <li>כתיבת הפרטים: כלי הכתב (<span class="kbd">T</span>).</li>
+            <li>יצירת צורות לרקע (רק בקצה העליון ו/או התחתון) בעזרת מלבן או אליפסה או כלי העט - <span class="en-box">PEN TOOL</span>.</li>
+            <li>שקיפות לאלמנט גרפי האמצע: להוריד את רמת ה-<span class="en-box">OPACITY</span> בתפריט העליון או בלוחית ה-<span class="en-box">PROPERTIES</span>.</li>
+            <li>הוספת הקסם והיצירתיות שלכם…. ;-)</li>
+            <li>שמירה של קובץ העבודה: <span class="en-box">FILE > SAVE</span>.</li>
+            <li>שמירה של תמונה סגורה: <span class="en-box">FILE > EXPORT > EXPORT AS</span>.</li>
+        </ol>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> 📩 מעטפה</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> להלן שלבי העבודה למעטפה:</p>
+        <ol>
+            <li>יצירת קובץ: <span class="en-box">FILE > NEW</span> | מידות: <strong>23 * 11 ס"מ</strong>.</li>
+            <li>פתיחת עבודה אחרת (כרטיס ביקור למשל…): <span class="en-box">FILE > OPEN</span> כדי להעתיק ממנה אלמנטים כמו הלוגו למשל..</li>
+            <li>סימון הלוגו (ו/או אלמנטים אחרים) בעזרת כלי הסימון (החץ השחור).</li>
+            <li>העתקה: <span class="kbd">CTRL + C</span> - הדבקה: <span class="kbd">CTRL + V</span>.</li>
+            <li>כתיבת הפרטים: כלי הכתב (<span class="kbd">T</span>).</li>
+            <li>יצירת צורות לרקע בעזרת מלבן או אליפסה או כלי העט - <span class="en-box">PEN TOOL</span>.</li>
+            <li>הוספת הקסם והיצירתיות שלכם…. ;-)</li>
+            <li>שמירה של קובץ העבודה: <span class="en-box">FILE > SAVE</span>.</li>
+            <li>שמירה של תמונה סגורה: <span class="en-box">FILE > EXPORT > EXPORT AS</span>.</li>
+        </ol>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> 🧾 קבלות / חשבונית מס</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> להלן שלבי העבודה לקבלות וחשבוניות מס:</p>
+        <ol>
+            <li>הורדת התבנית בפורמט <span class="en-box">AI</span> מהקלאסרום.</li>
+            <li>פתיחת התבנית ע"י <span class="en-box">FILE > OPEN</span> או יצירת קובץ: <span class="en-box">FILE > NEW</span> במידות: איי 5 - <strong>14.8 * 21 ס"מ</strong>.</li>
+            <li>פתיחת עבודה אחרת (כרטיס ביקור למשל…): <span class="en-box">FILE > OPEN</span> כדי להעתיק ממנה אלמנטים כמו הלוגו למשל...</li>
+            <li>סימון בעזרת כלי הסימון (החץ השחור).</li>
+            <li>העתקה: <span class="kbd">CTRL + C</span> | הדבקה: <span class="kbd">CTRL + V</span>.</li>
+            <li>המשך העיצוב לפי הצורך… והוספת הקסם והיצירתיות שלכם…. ;-)</li>
+            <li>שמירה של קובץ העבודה: <span class="en-box">FILE > SAVE</span>.</li>
+            <li>שמירה של תמונה סגורה: <span class="en-box">FILE > EXPORT > EXPORT AS</span>.</li>
+        </ol>
+        <div class="example-box">
+            <strong><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> דוגמת עבודה - חשבונית מס מנדלות:</strong>
+            <img class="doc-preview-img" src="https://lh3.googleusercontent.com/d/1x2XcVPyx1C-MT3uzrrBBuBVDaTZaJ4pC" alt="חשבונית מס מנדלות">
+        </div>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> 🎁 נייר אריזה</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> להלן שלבי העבודה לנייר אריזה (Pattern):</p>
+        <ol>
+            <li>פתיחת קובץ העבודה של הלוגו (בפורמט <span class="en-box">AI</span>) ע"י: <span class="en-box">FILE > OPEN</span>.</li>
+            <li>אם הלוגו מקובץ (בגרופ): קליק ימני + <span class="en-box">UNGROUP</span>.</li>
+            <li>ביטול סימון: לגעת באזור ריק עם כלי הסימון (החץ השחור).</li>
+            <li>סימון האלמנט הגרפי הרצוי, בעזרת כלי הסימון (החץ השחור).</li>
+            <li>העתקה: <span class="kbd">CTRL + C</span>.</li>
+            <li>יצירת הקובץ של נייר האריזה: <span class="en-box">FILE > NEW</span> במידות: איי 4 - <strong>29.7 * 21 ס"מ</strong>.</li>
+            <li>הדבקה: <span class="kbd">CTRL + V</span>.</li>
+            <li>הזזת האלמנט בעזרת החץ השחור מחוץ לגבולות הקובץ.</li>
+            <li>יצירת ההדפס (הפאטרן): <span class="en-box">FILE > OBJECT > PATTERN > MAKE</span>.</li>
+            <li>התאמת ההגדרות הרצויות בחלון שנפתח ואישור: ע"י לחיצה על <span class="en-box">DONE V</span> (ההדפס יעלם… לא להיבהל…).</li>
+            <li>יצירת רקע ע"י מתיחת מלבן (כלי צורת המלבן).</li>
+            <li>הטמעת רקע ההדפס: בחירת צורת הרקע המלבנית בעזרת החץ השחור (אם הוא לא מסומנן עדיין..).</li>
+            <li>פתיחת חלונית הדוגמיות (<span class="en-box">SWATCHES</span>) ובחירת ההדפס החדש.</li>
+            <li>הוספת הקסם והיצירתיות שלכם…. ;-)</li>
+            <li>שמירה של קובץ העבודה: <span class="en-box">FILE > SAVE</span>.</li>
+            <li>שמירה של תמונה סגורה: <span class="en-box">FILE > EXPORT > EXPORT AS</span>.</li>
+        </ol>
+
+        <h3><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> 📢 פלייר</h3>
+        <p><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> להלן שלבי העבודה לפלייר:</p>
+        <ol>
+            <li>פתיחת תוכנת אילוסטרייטור.</li>
+            <li>יצירת קובץ: <span class="en-box">FILE > NEW</span> | מידות: <strong>21 * 14.8 ס"מ</strong>.</li>
+            <li>פתיחת עבודה אחרת (כרטיס ביקור למשל…): <span class="en-box">FILE > OPEN</span> כדי להעתיק ממנה אלמנטים כמו הלוגו..</li>
+            <li>סימון הלוגו (ו/או אלמנטים אחרים) בעזרת החץ השחור.</li>
+            <li>העתקה: <span class="kbd">CTRL + C</span> | הדבקה: <span class="kbd">CTRL + V</span>.</li>
+            <li>הגדלה / הקטנה ע"י כלי הסימון.</li>
+            <li>כתיבת כותרת וטקסט פרסומי: כלי הכתב (<span class="kbd">T</span>).</li>
+            <li>יצירת צורות לרקע בעזרת מלבן או אליפסה או כלי העט - <span class="en-box">PEN TOOL</span>.</li>
+            <li>חיתוך צורות בעזרת ה-<span class="en-box">PATHFINDER</span> אם צריך.</li>
+            <li>או הורדת תמונת רקע מאתר <span class="en-box">PIXABAY.COM</span> או <span class="en-box">PEXELS.COM</span> והבאתה ע"י <span class="en-box">FILE > PLACE</span> והדבקתה לתוך צורה (<span class="en-box">CLIPPING MASK</span>).</li>
+            <li>או יצירת רקע ע"י שימוש בהדפס <span class="en-box">PATTERN</span>.</li>
+            <li>אפשר לשחק עם שקיפויות ברקע <span class="en-box">OPACITY</span>.</li>
+            <li>הוספת אלמנט או דמות מבודדים מתמונה שהורדתם: לבודד בפוטושופ ולשמור כ-<span class="en-box">PSD</span> ואז לייבא לקובץ העבודה ב-אילוסטרייטור ע"י <span class="en-box">PLACE</span>.</li>
+            <li>הוספת הקסם והיצירתיות שלכם…. ;-)</li>
+            <li>שמירה של קובץ העבודה: <span class="en-box">FILE > SAVE</span>.</li>
+            <li>שמירה של תמונה סגורה: <span class="en-box">FILE > EXPORT > EXPORT AS</span>.</li>
+        </ol>
+
+        <div class="example-box">
+            <strong><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> מה צריך להיות בפלייר?</strong>
+            <ul>
+                <li>• לוגו, צבעים וזהות העסק</li>
+                <li>• כותרת שיווקית גדולה בפונט ומשקל עבה</li>
+                <li>• טקסט שיווקי עם מסר שיווקי כגון פרסום אירוע, פתיחת עסק או סניף, תערוכה, מבצעים…</li>
+                <li>• רקע מעוצב מעניין שקשור למיתוג ולזהות העסק (צורות, תמונת רקע ו/או פאטרן)</li>
+                <li>• שימוש בצורות להבליט חלק מהטקסט, או מהמבצעים (מלבנים, עיגולים, אליפסות, כוכבים, שמש…)</li>
+                <li>• תמונה מבודדת (ויזואל) שקשורה למסר (חוץ מתמונת הרקע אם יש)</li>
+                <li>• פרטי התקשרות עם אייקונים תואמים (רשתות חברתיות…)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- מידות של תוצרים -->
+    <section>
+        <h2><img class="inline-avatar" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="avatar"> 📏 מידות של תוצרים אחרים באילוסטרייטור</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>תוצר</th>
+                        <th>מידות (רוחב * גובה)</th>
+                        <th>כיוון / דגש</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>פלייר איי 5</strong></td>
+                        <td>14.8 * 21 ס"מ</td>
+                        <td>לגובה</td>
+                    </tr>
+                    <tr>
+                        <td><strong>כרזה / פוסטר איי 3</strong></td>
+                        <td>29.7 * 42 ס"מ</td>
+                        <td>לגובה</td>
+                    </tr>
+                    <tr>
+                        <td><strong>מודעה לעיתון איי 4</strong></td>
+                        <td>21 * 29.7 ס"מ</td>
+                        <td>לגובה</td>
+                    </tr>
+                    <tr>
+                        <td><strong>באנר לאתר</strong></td>
+                        <td>5.5 * 15 ס"מ</td>
+                        <td>לגובה</td>
+                    </tr>
+                    <tr>
+                        <td><strong>רול אפ</strong></td>
+                        <td>85 * 200 ס"מ</td>
+                        <td>לגובה</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<!-- Floating Crazy Avatar Widget -->
+<div class="floating-avatar-widget" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <img class="floating-avatar-img" src="https://lh3.googleusercontent.com/d/1fzqv93VKIW_VT8-e1HdJxBmbU2sFnwlb" alt="Crazy Avatar">
+    <div class="floating-avatar-text">
+        <span class="title">מורה דרך דיגיטלי</span>
+        <span class="desc">לחץ לגלילה למעלה!</span>
+    </div>
+</div>
+
+</body>
+</html>
